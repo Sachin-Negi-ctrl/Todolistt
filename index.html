@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>My Tasks</h1>
+            <span class="task-count" id="taskCount">0 tasks left</span>
+        </header>
+
+        <!-- Input Section -->
+        <form class="input-section" id="todoForm">
+            <input type="text" class="inp" placeholder="Add a new task..." autofocus>
+            <button type="submit" class="add-btn">Add</button>
+        </form>
+
+        <!-- Filter Buttons -->
+        <div class="filter-group">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+            <button class="clear-all-btn" id="clearAllBtn">Clear All</button>
+        </div>
+
+        <!-- Task List Container -->
+        <div class="todo-list" id="todoList"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

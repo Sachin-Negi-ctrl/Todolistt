@@ -9,18 +9,21 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    min-height: 100dvh; /* Adapts to dynamic mobile browser address bars */
     font-family: "Work Sans", sans-serif;
-    background-color: #2b211f; /* Soft dark contrast backdrop */
-    padding: 20px;
+    background-color: #2b211f;
+    padding: 16px; /* Reduced outer padding for small screens */
 }
 
 .container {
     background-color: #FD5D26;
-    height: 650px;
+    height: 85vh; /* Fluid height instead of fixed 650px */
+    max-height: 700px;
+    min-height: 480px;
     width: 100%;
     max-width: 520px;
-    padding: 32px;
-    border-radius: 24px;
+    padding: 24px 20px; /* Scaled down from 32px to fit mobile widths */
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
@@ -31,17 +34,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     color: #FAEDCA;
 }
 
 .header h1 {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
 }
 
 .task-count {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     opacity: 0.9;
 }
@@ -49,18 +52,19 @@ body {
 /* Input Section */
 .input-section {
     display: flex;
-    gap: 10px;
-    margin-bottom: 18px;
+    gap: 8px;
+    margin-bottom: 16px;
 }
 
 .inp {
     flex: 1;
+    min-width: 0; /* Prevents input from overflowing flex container */
     background-color: #F2C078;
-    height: 50px;
-    padding: 0 18px;
+    height: 46px;
+    padding: 0 14px;
     border-radius: 12px;
     border: 2px solid transparent;
-    font-size: 16px;
+    font-size: 16px; /* 16px prevents iOS Safari auto-zoom on tap */
     font-family: inherit;
     color: #463045;
     outline: none;
@@ -77,12 +81,13 @@ body {
 }
 
 .add-btn {
-    width: 90px;
-    height: 50px;
+    flex-shrink: 0;
+    width: 76px;
+    height: 46px;
     border-radius: 12px;
     border: none;
     font-weight: 700;
-    font-size: 17px;
+    font-size: 16px;
     background-color: #FAEDCA;
     color: #FD5D26;
     cursor: pointer;
@@ -101,8 +106,10 @@ body {
 /* Filter Buttons */
 .filter-group {
     display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
+    flex-wrap: wrap; /* Allows wrapping on screens under 360px */
+    row-gap: 6px;
+    column-gap: 6px;
+    margin-bottom: 14px;
     align-items: center;
 }
 
@@ -110,9 +117,9 @@ body {
     background: transparent;
     border: none;
     color: #FAEDCA;
-    padding: 6px 12px;
+    padding: 5px 10px;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -129,9 +136,10 @@ body {
     border: none;
     color: #FAEDCA;
     opacity: 0.8;
-    font-size: 13px;
+    font-size: 12px;
     text-decoration: underline;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .clear-all-btn:hover {
@@ -142,15 +150,15 @@ body {
 .todo-list {
     flex: 1;
     overflow-y: auto;
-    padding-right: 6px;
+    padding-right: 4px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 /* Custom Scrollbar */
 .todo-list::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 .todo-list::-webkit-scrollbar-thumb {
     background: rgba(250, 237, 202, 0.4);
@@ -161,11 +169,11 @@ body {
 .display-msg {
     background-color: #C1DBB4;
     border-radius: 12px;
-    padding: 12px 16px;
+    padding: 10px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     animation: fadeIn 0.2s ease;
 }
@@ -178,7 +186,7 @@ body {
 .task-content {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     flex: 1;
     min-width: 0;
 }
@@ -204,13 +212,13 @@ body {
 .checkbox-btn.checked::after {
     content: "✓";
     color: #C1DBB4;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
 }
 
 .msg {
     word-break: break-word;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 500;
     color: rgb(70, 48, 69);
     transition: opacity 0.2s ease;
@@ -226,8 +234,8 @@ body {
     background-color: #ff5252;
     color: white;
     border: none;
-    padding: 6px 12px;
-    font-size: 13px;
+    padding: 5px 10px;
+    font-size: 12px;
     font-weight: 600;
     border-radius: 6px;
     cursor: pointer;
@@ -247,7 +255,31 @@ body {
 .empty-state {
     color: #FAEDCA;
     text-align: center;
-    margin-top: 60px;
-    font-size: 16px;
+    margin-top: 40px;
+    font-size: 15px;
     opacity: 0.8;
+}
+
+/* Extra breakpoint for desktop screens */
+@media (min-width: 600px) {
+    .container {
+        padding: 32px;
+        height: 650px;
+        border-radius: 24px;
+    }
+    .header h1 {
+        font-size: 28px;
+    }
+    .inp {
+        height: 50px;
+        padding: 0 18px;
+    }
+    .add-btn {
+        width: 90px;
+        height: 50px;
+        font-size: 17px;
+    }
+    .msg {
+        font-size: 17px;
+    }
 }
